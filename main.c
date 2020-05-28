@@ -1,15 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <errno.h>
-#include <x86intrin.h>
 #include <omp.h>
 
 #define runs 5
 
-int rowsA = 10;
-int colsA = 5;
-int rowsB = 5;
-int colsB = 13;
+int rowsA = 50;
+int colsA = 50;
+int rowsB = 50;
+int colsB = 50;
 int numThreads = 8;
 int ompCorrect = 1;
 int threadsCorrect = 1;
@@ -79,10 +78,10 @@ int buildMatrixes() {
 	aSize = rowsA * colsA * sizeof(double);
 	bSize = rowsB * colsB * sizeof(double);
 	outSize = rowsA * colsB * sizeof(double);
-	a = (double*)aligned_alloc(alignment, aSize);
-	b = (double*)aligned_alloc(alignment, bSize);
-	c = (double*)aligned_alloc(alignment, outSize);
-	r = (double*)aligned_alloc(alignment, outSize);
+	a = (double*)_aligned_malloc(aSize, alignment);
+	b = (double*)_aligned_malloc(bSize, alignment);
+	c = (double*)_aligned_malloc(outSize, alignment);
+	r = (double*)_aligned_malloc(outSize, alignment);
 	if (errno == ENOMEM || a == NULL || b == NULL || c == NULL) {
 		printf("Error en memory allocation o especio insuficiente en el heap.\n");
 		return -2;
@@ -91,10 +90,10 @@ int buildMatrixes() {
 }
 
 void freeMemory() {
-	free(a);
-	free(b);
-	free(c);
-	free(r);
+	_aligned_free(a);
+	_aligned_free(b);
+	_aligned_free(c);
+	_aligned_free(r);
 }
 
 int verifyResults() {
