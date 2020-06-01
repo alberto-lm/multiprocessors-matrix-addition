@@ -198,13 +198,13 @@ void cudaWrapper(){
 }
 
 void printTable() {
-	printf("%-15s\t%-15s\t%-15s\t%-15s\n","Corrida", "Serial", "Paralelo1", "Paralelo2");
+	printf("%-20s%-20s%-20s%-20s\n","Corrida", "Serial", "Paralelo1", "Paralelo2");
 	for (i = 0; i < runs; i++) {
-		printf ("%-15d\t%5.10lf\t%5.10lf\t%5.10lf\n", i+1, executionTimes[i][0], executionTimes[i][1], executionTimes[i][2]);
+		printf ("%-20d%-20.10lf%-20.10lf%-20.10lf\n", i+1, executionTimes[i][0], executionTimes[i][1], executionTimes[i][2]);
 	}
-	printf ("%-15s\t%5.10lf\t%5.10lf\t%5.10lf\n", "Promedio", executionTimes[runs + 1][0], executionTimes[runs + 1][1], executionTimes[runs + 1][2]);
-	printf ("%-15s\t%-15s\t%5.10lf\t%5.10lf\n", "Speedup", "-",  executionTimes[runs + 1][1] / executionTimes[runs + 1][0], executionTimes[runs + 1][2] / executionTimes[runs + 1][0]);
-	printf ("%-15s\t%-15s\t%-15d\t%-15d\n", "Correct", "-", ompCorrect, cudaCorrect);
+	printf ("%-20s%-20.10lf%-20.10lf%-20.10lf\n", "Promedio", executionTimes[runs + 1][0], executionTimes[runs + 1][1], executionTimes[runs + 1][2]);
+	printf ("%-20s%-20s%-20.10lf%-20.10lf\n", "Speedup", "-",  executionTimes[runs + 1][1] / executionTimes[runs + 1][0], executionTimes[runs + 1][2] / executionTimes[runs + 1][0]);
+	printf ("%-20s%-20s%-20d%-20d\n", "Correct", "-", ompCorrect, cudaCorrect);
 }
 
 int main() {
