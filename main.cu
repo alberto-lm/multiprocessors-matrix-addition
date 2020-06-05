@@ -208,9 +208,9 @@ void printTable() {
 }
 
 int main() {
-	/*if (getMatrixesDimensions()) {
+	if (getMatrixesDimensions()) {
 		return -1;
-	}*/
+	}
 	if (buildMatrixes()) {
 		return -2;
 	}
